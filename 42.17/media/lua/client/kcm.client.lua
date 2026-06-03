@@ -1,8 +1,8 @@
 require "ISUI/ISToolTip"
 
 local MagazineObject, tooltipIcons = {}, nil
-KRM = KRM or {}
-KRM.CLIENT = {
+KCM = KCM or {}
+KCM.CLIENT = {
     onGameLoaded = false
 }
 
@@ -99,7 +99,7 @@ local function BuildTooltip(imagePath, name)
     tooltip:instantiate()
 
     tooltip.nameMarginX = 0
-    tooltip.defaultMyWidth = 150
+    tooltip.defaultMyWidth = 0
 
     local description = "<LINE> <IMAGE:" .. imagePath .. ",34,34> <TEXT> <SIZE:small> <RGB:1,1,1> " .. (name or "")
     tooltip:setDescription(description)
@@ -109,8 +109,8 @@ local function BuildTooltip(imagePath, name)
     return tooltip, description
 end
 
-function KRM.CLIENT:BuildTooltipForRecipe()
-    local option = KRM.OPTIONS.GetTickBoxValue()
+function KCM.CLIENT:BuildTooltipForRecipe()
+    local option = KCM.OPTIONS.GetTickBoxValue()
     local NCRecipeInfoPanel = _G["NC_RecipeInfoPanel"]
     local DefaultRecipeInfoPanel = _G["ISWidgetTitleHeader"]
 
@@ -217,7 +217,7 @@ function KRM.CLIENT:BuildTooltipForRecipe()
 end
 
 Events.OnGameStart.Add(function()
-    KRM.CLIENT.onGameLoaded = true
+    KCM.CLIENT.onGameLoaded = true
     BuildLearningMagMap()
-    KRM.CLIENT:BuildTooltipForRecipe()
+    KCM.CLIENT:BuildTooltipForRecipe()
 end)

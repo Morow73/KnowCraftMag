@@ -1,6 +1,6 @@
-name=Know Recipe Mag
-id=knowrecipemag
-description=View recipe mag for unlock craft recipe.
+name=Know Craft Mag
+id=knowcraftmag
+description=Check out the recipe magazine to unlock handcrafted recipes.
 version=1.0
 modversion=1.0
 poster=poster.png

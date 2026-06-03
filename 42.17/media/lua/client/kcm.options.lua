@@ -1,14 +1,14 @@
 local Option, NC_State = nil, false
 local mods = getActivatedMods()
-KRM = KRM or {}
-KRM.OPTIONS = {}
+KCM = KCM or {}
+KCM.OPTIONS = {}
 
-local function KRM_BuildOptions()
+local function KCM_BuildOptions()
     if mods:contains("Neat_Crafting") then
-        local PZ_Options = PZAPI.ModOptions:create('krm_options', 'Know Recipe Mag')
+        local PZ_Options = PZAPI.ModOptions:create('kcm_options', 'Know Craft Mag')
         local NC_RegisterUiToggleCallback = _G["NC_RegisterUiToggleCallback"]
 
-        Option = PZ_Options:addTickBox("neatcrafting_compat", getText("IGUI_KRM_NeatCrafting"), NC_State)
+        Option = PZ_Options:addTickBox("neatcrafting_compat", getText("IGUI_KCM_NeatCrafting"), NC_State)
 
         if type(PZAPI.ModOptions.load) == "function" then
             PZAPI.ModOptions.load = function(_, _)
@@ -25,32 +25,32 @@ local function KRM_BuildOptions()
                 if Option then
                     Option:setValue(NC_State)
 
-                    if KRM and KRM.CLIENT and KRM.CLIENT.onGameLoaded then
-                        KRM.CLIENT:BuildTooltipForRecipe()
+                    if KCM and KCM.CLIENT and KCM.CLIENT.onGameLoaded then
+                        KCM.CLIENT:BuildTooltipForRecipe()
                     end
                 end
             end)
         end
 
         Option.onChangeApply = function(_, selected)
-            if KRM and KRM.CLIENT and KRM.CLIENT.onGameLoaded then
-                KRM.CLIENT:BuildTooltipForRecipe()
+            if KCM and KCM.CLIENT and KCM.CLIENT.onGameLoaded then
+                KCM.CLIENT:BuildTooltipForRecipe()
             end
         end
 
         Option.onChange = function(_, selected)
-            if KRM and KRM.CLIENT and KRM.CLIENT.onGameLoaded then
-                KRM.CLIENT:BuildTooltipForRecipe()
+            if KCM and KCM.CLIENT and KCM.CLIENT.onGameLoaded then
+                KCM.CLIENT:BuildTooltipForRecipe()
             end
         end
     end
 end
 
-function KRM.OPTIONS.GetTickBoxValue()
+function KCM.OPTIONS.GetTickBoxValue()
     if Option then
         return Option:getValue()
     end
     return false
 end
 
-Events.OnGameBoot.Add(KRM_BuildOptions)
+Events.OnGameBoot.Add(KCM_BuildOptions)
