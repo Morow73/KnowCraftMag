@@ -1,0 +1,11 @@
+name=Know Recipe Mag
+id=knowrecipemag
+description=View recipe mag for unlock craft recipe.
+version=1.0
+modversion=1.0
+poster=poster.png
+icon=icons.png
+author=Morow
+versionMin=42.17
+tags=Build 42, Quality of life, QOL
+incompatible=
